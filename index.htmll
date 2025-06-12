@@ -2,48 +2,38 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Prophecy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>THE PROPHECY</title>
   <style>
-    * {
+    body {
       margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body, html {
-      height: 100%;
-      font-family: Arial, sans-serif;
-      color: white;
       overflow: hidden;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
     }
 
-    .background {
+    .bg {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('background.gif') repeat center center;
       background-size: cover;
+      background-position: center;
       z-index: -1;
+      transition: background-image 2s ease;
     }
 
     .content {
       position: relative;
-      z-index: 1;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      backdrop-filter: brightness(0.9);
+      top: 50%;
+      transform: translateY(-50%);
     }
 
     h1 {
       font-size: 4em;
-      margin-bottom: 0.2em;
+      margin: 0.2em 0;
     }
 
     h2 {
@@ -58,41 +48,52 @@
     footer {
       position: absolute;
       bottom: 20px;
-      font-size: 0.8em;
       width: 100%;
-      text-align: center;
+      font-size: 0.8em;
+      color: white;
     }
   </style>
 </head>
 <body>
-  <div class="background"></div>
+  <div class="bg" id="background"></div>
+
   <div class="content">
-    <h1>THE PROPHECY</h1>
-    <h2>BEGINS IN...</h2>
+    <h1>PEEZUS</h1>
+    <h2 id="tagline">THE PROPHECY BEGINS IN...</h2>
     <div id="countdown"></div>
-    <footer>&copy; 2025 Ziaire Poochie. All rights reserved.</footer>
   </div>
 
+  <footer>
+    &copy; 2025 Ziaire Poochie. All rights reserved.
+  </footer>
+
   <script>
+    const background = document.getElementById("background");
+    background.style.backgroundImage = "url('tumblr_mpn5r45Xew1qmwidzo1_500.webp')"; // your gif name
+
     const targetDate = new Date("2025-07-26T00:00:00").getTime();
     const countdown = document.getElementById("countdown");
+    const tagline = document.getElementById("tagline");
 
     function updateCountdown() {
       const now = new Date().getTime();
       const distance = targetDate - now;
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      if (distance <= 0) {
+        countdown.innerHTML = "";
+        tagline.innerHTML = "IT'S TIME.";
+        background.style.backgroundImage = "url('peezus_cover.jpg')"; // replace with your album cover file name
+      } else {
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-
-      if (distance < 0) {
-        countdown.innerHTML = "IT'S TIME.";
+        countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
       }
     }
 
+    updateCountdown();
     setInterval(updateCountdown, 1000);
   </script>
 </body>
