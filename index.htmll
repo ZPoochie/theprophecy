@@ -71,7 +71,7 @@
     const background = document.getElementById("background");
     background.style.backgroundImage = "url('tumblr_mpn5r45Xew1qmwidzo1_500.webp')"; // your gif name
 
-    const targetDate = new Date("2025-07-26T00:00:00").getTime();
+    const targetDate = new Date("2025-07-12T00:00:30").getTime();
     const countdown = document.getElementById("countdown");
     const tagline = document.getElementById("tagline");
 
