@@ -1,47 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>The Prophecy Begins</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THE PROPHECY</title>
   <style>
-    body {
-      background-color: black;
-      color: white;
-      font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
+    * {
       margin: 0;
-      overflow: hidden;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: white;
       text-align: center;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
     }
+
+    body::before {
+      content: "";
+      background: url("background.gif") no-repeat center center/cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      opacity: 0.4;
+    }
+
     h1 {
-      font-size: 3em;
-      margin: 0.2em 0;
+      font-size: 4em;
+      margin-top: 1em;
     }
+
+    h2 {
+      font-size: 1.5em;
+      margin: 0.5em 0;
+    }
+
     #countdown {
       font-size: 2em;
     }
+
     footer {
       position: absolute;
       bottom: 20px;
       font-size: 0.8em;
+      width: 100%;
     }
   </style>
 </head>
 <body>
-  <h1>THE PROPHECY BEGINS IN...</h1>
+  <h1>THE PROPHECY</h1>
+  <h2>BEGINS IN...</h2>
   <div id="countdown"></div>
-  <footer>
-    &copy; 2025 Ziaire Poochie. All rights reserved.
-  </footer>
+  <footer>&copy; 2025 Ziaire Poochie. All rights reserved.</footer>
 
   <script>
     const targetDate = new Date("2025-07-26T00:00:00").getTime();
-
     const countdown = document.getElementById("countdown");
 
     function updateCountdown() {
